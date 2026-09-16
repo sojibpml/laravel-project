@@ -33,7 +33,7 @@ jobs:
     steps:
       # 1. GitHub repository থেকে code আনা
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       # 2. PHP install
       - name: Setup PHP
