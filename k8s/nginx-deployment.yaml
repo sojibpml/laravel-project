@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: nginx
+  namespace: laravel
+
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: nginx
+
+  template:
+    metadata:
+      labels:
+        app: nginx
+
+    spec:
+      initContainers:
+        - name: copy-laravel-files
+          image: sojib123/backend:v2
+          imagePullPolicy: Always
+
+          command:
+            - sh
+            - -c
+            - |
+              cp -a /var/www/html/. /shared/
+
+          volumeMounts:
+            - name: laravel-code
+              mountPath: /shared
+
+      containers:
+        - name: nginx
+          image: sojib123/laravel-nginx:v3
+          imagePullPolicy: Always
+
+          ports:
+            - containerPort: 80
+
+          volumeMounts:
+            - name: laravel-code
+              mountPath: /var/www/html
+
+      volumes:
+        - name: laravel-code
+          emptyDir: {}

@@ -1,0 +1,73 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: php-fpm
+  namespace: laravel
+
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: php-fpm
+
+  template:
+    metadata:
+      labels:
+        app: php-fpm
+
+    spec:
+      containers:
+        - name: php-fpm
+          image: sojib123/backend:v2
+          imagePullPolicy: Always
+
+          ports:
+            - containerPort: 9000
+
+          resources:
+            requests:
+              cpu: "200m"
+              memory: "256Mi"
+
+            limits:
+              cpu: "1000m"
+              memory: "1Gi"
+
+          env:
+            - name: APP_ENV
+              valueFrom:
+                configMapKeyRef:
+                  name: laravel-config
+                  key: APP_ENV
+
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: laravel-config
+                  key: DB_HOST
+
+            - name: DB_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: laravel-config
+                  key: DB_PORT
+
+            - name: DB_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: laravel-config
+                  key: DB_DATABASE
+
+            - name: DB_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: laravel-config
+                  key: DB_USERNAME
+
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: laravel-secret
+                  key: DB_PASSWORD
