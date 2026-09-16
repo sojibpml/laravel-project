@@ -9,14 +9,13 @@ on:
     branches:
       - main
 
-  jobs:
-    laravel-test:
-
+jobs:
+  laravel-test:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -31,8 +30,8 @@ on:
       - name: Create environment file
         run: cp .env.example .env
 
-      - name: Generate Laravel application Key
+      - name: Generate Laravel application key
         run: php artisan key:generate
 
       - name: Run Laravel tests
-        Run: php artisan test
+        run: php artisan test
