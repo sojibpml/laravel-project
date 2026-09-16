@@ -16,11 +16,14 @@ jobs:
     services:
       mysql:
         image: mysql:8.0
+
         env:
           MYSQL_DATABASE: demoproject
           MYSQL_ROOT_PASSWORD: root
+
         ports:
           - 3306:3306
+
         options: >-
           --health-cmd="mysqladmin ping -h 127.0.0.1 -uroot -proot"
           --health-interval=10s
@@ -28,9 +31,11 @@ jobs:
           --health-retries=5
 
     steps:
+      # 1. GitHub repository থেকে code আনা
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # 2. PHP install
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
@@ -38,12 +43,15 @@ jobs:
           extensions: mbstring, pdo, pdo_mysql
           coverage: none
 
+      # 3. Composer dependencies install
       - name: Install Composer dependencies
         run: composer install --no-interaction --prefer-dist
 
+      # 4. .env তৈরি
       - name: Create environment file
         run: cp .env.example .env
 
+      # 5. Database configuration
       - name: Configure database
         run: |
           sed -i 's/^DB_CONNECTION=.*/DB_CONNECTION=mysql/' .env
@@ -53,11 +61,14 @@ jobs:
           sed -i 's/^DB_USERNAME=.*/DB_USERNAME=root/' .env
           sed -i 's/^DB_PASSWORD=.*/DB_PASSWORD=root/' .env
 
+      # 6. Laravel APP_KEY তৈরি
       - name: Generate Laravel application key
         run: php artisan key:generate
 
+      # 7. Database table তৈরি
       - name: Run migrations
         run: php artisan migrate --force
 
+      # 8. Laravel test
       - name: Run Laravel tests
         run: php artisan test
