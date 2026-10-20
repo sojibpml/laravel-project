@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: queue
+  namespace: laravel
+
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: queue
+
+  template:
+    metadata:
+      labels:
+        app: queue
+
+    spec:
+      containers:
+        - name: queue
+          image: sojib123/laravel-app:latest
+
+          command:
+            - php
+            - artisan
+            - queue:work
+            - redis
+            - --sleep=3
+            - --tries=3
+
+          envFrom:
+            - configMapRef:
+                name: laravel-config
+
+            - secretRef:
+                name: laravel-secret

@@ -1,11 +1,12 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 
 metadata:
   name: mysql
   namespace: laravel
 
 spec:
+  serviceName: mysql-service
   replicas: 1
 
   selector:
@@ -27,10 +28,16 @@ spec:
 
           env:
             - name: MYSQL_DATABASE
-              value: demoproject
+              valueFrom:
+                configMapKeyRef:
+                  name: laravel-config
+                  key: DB_DATABASE
 
             - name: MYSQL_USER
-              value: laravel
+              valueFrom:
+                secretKeyRef:
+                  name: laravel-secret
+                  key: DB_USERNAME
 
             - name: MYSQL_PASSWORD
               valueFrom:

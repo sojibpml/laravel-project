@@ -1,0 +1,16 @@
+FROM dunglas/frankenphp:1-php8.3
+
+WORKDIR /var/www
+
+RUN install-php-extensions \
+    pdo_mysql \
+    bcmath \
+    intl \
+    zip \
+    redis
+
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
+EXPOSE 8000
+
+CMD ["frankenphp", "php-server", "--listen", "0.0.0.0:8000", "--root", "/var/www/public"]
