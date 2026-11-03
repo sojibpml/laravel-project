@@ -1,0 +1,236 @@
+========== 1. MYSQL POD STATUS ==========
+Name:             mysql-0
+Namespace:        laravel
+Priority:         0
+Service Account:  default
+Node:             laravel-cluster-control-plane/172.19.0.2
+Start Time:       Wed, 07 Oct 2026 13:13:27 +0600
+Labels:           app=mysql
+                  apps.kubernetes.io/pod-index=0
+                  controller-revision-hash=mysql-59f6d4f994
+                  statefulset.kubernetes.io/pod-name=mysql-0
+Annotations:      <none>
+Status:           Running
+IP:               10.244.0.9
+IPs:
+  IP:           10.244.0.9
+Controlled By:  StatefulSet/mysql
+Containers:
+  mysql:
+    Container ID:   containerd://0203703ed42bbe614001523f65b77fc3c8e6d5ad21b1e182205224600d9d0f43
+    Image:          mysql:8.0
+    Image ID:       docker.io/library/mysql@sha256:7dcddc01f13bab2f15cde676d44d01f61fc9f99fe7785e86196dfc07d358ae2b
+    Port:           3306/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Mon, 26 Oct 2026 12:12:16 +0600
+    Last State:     Terminated
+      Reason:       Unknown
+      Exit Code:    255
+      Started:      Fri, 23 Oct 2026 14:05:14 +0600
+      Finished:     Mon, 26 Oct 2026 12:12:07 +0600
+    Ready:          True
+    Restart Count:  13
+    Environment:
+      MYSQL_DATABASE:       <set to the key 'DB_DATABASE' of config map 'laravel-config'>      Optional: false
+      MYSQL_USER:           <set to the key 'DB_USERNAME' in secret 'laravel-secret'>          Optional: false
+      MYSQL_PASSWORD:       <set to the key 'DB_PASSWORD' in secret 'laravel-secret'>          Optional: false
+      MYSQL_ROOT_PASSWORD:  <set to the key 'MYSQL_ROOT_PASSWORD' in secret 'laravel-secret'>  Optional: false
+    Mounts:
+      /var/lib/mysql from mysql-storage (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-5kpc6 (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  mysql-storage:
+    Type:       PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same namespace)
+    ClaimName:  mysql-pvc
+    ReadOnly:   false
+  kube-api-access-5kpc6:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason          Age    From     Message
+  ----    ------          ----   ----     -------
+  Normal  SandboxChanged  4d22h  kubelet  Pod sandbox changed, it will be killed and re-created.
+  Normal  Pulled          4d22h  kubelet  spec.containers{mysql}: Container image "mysql:8.0" already present on machine and can be accessed by the pod
+  Normal  Created         4d22h  kubelet  spec.containers{mysql}: Container created
+  Normal  Started         4d22h  kubelet  spec.containers{mysql}: Container started
+  Normal  SandboxChanged  3d     kubelet  Pod sandbox changed, it will be killed and re-created.
+  Normal  Pulled          3d     kubelet  spec.containers{mysql}: Container image "mysql:8.0" already present on machine and can be accessed by the pod
+  Normal  Created         3d     kubelet  spec.containers{mysql}: Container created
+  Normal  Started         3d     kubelet  spec.containers{mysql}: Container started
+  Normal  SandboxChanged  2d22h  kubelet  Pod sandbox changed, it will be killed and re-created.
+  Normal  Pulled          2d22h  kubelet  spec.containers{mysql}: Container image "mysql:8.0" already present on machine and can be accessed by the pod
+  Normal  Created         2d22h  kubelet  spec.containers{mysql}: Container created
+  Normal  Started         2d22h  kubelet  spec.containers{mysql}: Container started
+  Normal  SandboxChanged  23m    kubelet  Pod sandbox changed, it will be killed and re-created.
+  Normal  Pulled          23m    kubelet  spec.containers{mysql}: Container image "mysql:8.0" already present on machine and can be accessed by the pod
+  Normal  Created         23m    kubelet  spec.containers{mysql}: Container created
+  Normal  Started         23m    kubelet  spec.containers{mysql}: Container started
+========== 2. MYSQL PREVIOUS LOGS ==========
+2026-10-23 08:05:15+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.0.46-1.el9 started.
+2026-10-23 08:05:15+00:00 [Note] [Entrypoint]: Switching to dedicated user 'mysql'
+2026-10-23 08:05:15+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.0.46-1.el9 started.
+'/var/lib/mysql/mysql.sock' -> '/var/run/mysqld/mysqld.sock'
+2026-10-23T08:05:16.238675Z 0 [Warning] [MY-011068] [Server] The syntax '--skip-host-cache' is deprecated and will be removed in a future release. Please use SET GLOBAL host_cache_size=0 instead.
+2026-10-23T08:05:16.240662Z 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.0.46) starting as process 1
+2026-10-23T08:05:16.263235Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-10-23T08:05:16.656787Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-10-23T08:05:17.076354Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2026-10-23T08:05:17.076421Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2026-10-23T08:05:17.081697Z 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+2026-10-23T08:05:17.131763Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060, socket: /var/run/mysqld/mysqlx.sock
+2026-10-23T08:05:17.131876Z 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.0.46'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server - GPL.
+2026-10-23T08:37:00.770391Z 0 [System] [MY-013172] [Server] Received SHUTDOWN from user <via user signal>. Shutting down mysqld (Version: 8.0.46).
+========== 3. REDIS POD STATUS ==========
+Name:             redis-68bbc94689-n6ssf
+Namespace:        laravel
+Priority:         0
+Service Account:  default
+Node:             laravel-cluster-control-plane/172.19.0.2
+Start Time:       Thu, 08 Oct 2026 07:40:09 +0600
+Labels:           app=redis
+                  pod-template-hash=68bbc94689
+Annotations:      <none>
+Status:           Running
+IP:               10.244.0.2
+IPs:
+  IP:           10.244.0.2
+Controlled By:  ReplicaSet/redis-68bbc94689
+Containers:
+  redis:
+    Container ID:   containerd://86d31a7bc6fd4a08711e8d9a71ed8c8f911e94fe432cbd5c08247031e5cea053
+    Image:          redis:alpine
+    Image ID:       docker.io/library/redis@sha256:3811787313eba226a2ef38658c6ccb91cd5e110edc89c37767de373120a0e5a0
+    Port:           6379/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Mon, 26 Oct 2026 12:12:15 +0600
+    Last State:     Terminated
+      Reason:       Unknown
+      Exit Code:    255
+      Started:      Fri, 23 Oct 2026 14:05:14 +0600
+      Finished:     Mon, 26 Oct 2026 12:12:07 +0600
+    Ready:          True
+    Restart Count:  10
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-cl6cn (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-cl6cn:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason          Age    From     Message
+  ----    ------          ----   ----     -------
+  Normal  SandboxChanged  4d22h  kubelet  Pod sandbox changed, it will be killed and re-created.
+  Normal  Pulled          4d22h  kubelet  spec.containers{redis}: Container image "redis:alpine" already present on machine and can be accessed by the pod
+  Normal  Created         4d22h  kubelet  spec.containers{redis}: Container created
+  Normal  Started         4d22h  kubelet  spec.containers{redis}: Container started
+  Normal  SandboxChanged  3d     kubelet  Pod sandbox changed, it will be killed and re-created.
+  Normal  Pulled          3d     kubelet  spec.containers{redis}: Container image "redis:alpine" already present on machine and can be accessed by the pod
+  Normal  Created         3d     kubelet  spec.containers{redis}: Container created
+  Normal  Started         3d     kubelet  spec.containers{redis}: Container started
+  Normal  SandboxChanged  2d22h  kubelet  Pod sandbox changed, it will be killed and re-created.
+  Normal  Pulled          2d22h  kubelet  spec.containers{redis}: Container image "redis:alpine" already present on machine and can be accessed by the pod
+  Normal  Created         2d22h  kubelet  spec.containers{redis}: Container created
+  Normal  Started         2d22h  kubelet  spec.containers{redis}: Container started
+  Normal  SandboxChanged  23m    kubelet  Pod sandbox changed, it will be killed and re-created.
+  Normal  Pulled          23m    kubelet  spec.containers{redis}: Container image "redis:alpine" already present on machine and can be accessed by the pod
+  Normal  Created         23m    kubelet  spec.containers{redis}: Container created
+  Normal  Started         23m    kubelet  spec.containers{redis}: Container started
+========== 4. REDIS PREVIOUS LOGS ==========
+Starting Redis Server
+1:C 23 Oct 2026 08:05:14.447 * oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+1:C 23 Oct 2026 08:05:14.447 * Redis version=8.10.2, bits=64, commit=00000000, modified=1, pid=1, just started
+1:C 23 Oct 2026 08:05:14.447 * Configuration loaded
+1:M 23 Oct 2026 08:05:14.447 * monotonic clock: POSIX clock_gettime
+1:M 23 Oct 2026 08:05:14.449 * Running mode=standalone, port=6379.
+1:M 23 Oct 2026 08:05:14.452 * <bf> RedisBloom version 8.10.1 (Git=unknown)
+1:M 23 Oct 2026 08:05:14.452 * <bf> Registering configuration options: [
+1:M 23 Oct 2026 08:05:14.452 * <bf> 	{ bf-error-rate       :      0.01 }
+1:M 23 Oct 2026 08:05:14.452 * <bf> 	{ bf-initial-size     :       100 }
+1:M 23 Oct 2026 08:05:14.452 * <bf> 	{ bf-expansion-factor :         2 }
+1:M 23 Oct 2026 08:05:14.452 * <bf> 	{ cf-bucket-size      :         2 }
+1:M 23 Oct 2026 08:05:14.452 * <bf> 	{ cf-initial-size     :      1024 }
+1:M 23 Oct 2026 08:05:14.452 * <bf> 	{ cf-max-iterations   :        20 }
+1:M 23 Oct 2026 08:05:14.452 * <bf> 	{ cf-expansion-factor :         1 }
+1:M 23 Oct 2026 08:05:14.452 * <bf> 	{ cf-max-expansions   :        32 }
+1:M 23 Oct 2026 08:05:14.452 * <bf> ]
+1:M 23 Oct 2026 08:05:14.452 * Module 'bf' loaded from /usr/local/lib/redis/modules//redisbloom.so
+1:M 23 Oct 2026 08:05:14.545 * <search> search-workers default: 8 (min of MAX_WORKER_THREADS=16 and CPU cores)
+1:M 23 Oct 2026 08:05:14.545 * <search> Redis version found by RedisSearch : 8.10.2 - oss
+1:M 23 Oct 2026 08:05:14.545 * <search> RediSearch version 8.10.1 (Git=)
+1:M 23 Oct 2026 08:05:14.545 * <search> gc: ON, prefix min length: 2, min word length to stem: 4, prefix max expansions: 200, query timeout (ms): 500, timeout policy: return, oom policy: return, cursor read size: 1000, cursor max idle (ms): 300000, max doctable size: 1000000, max number of search results:  1000000, default scorer: BM25STD, 
+1:M 23 Oct 2026 08:05:14.545 * <search> Initialized thread pools!
+1:M 23 Oct 2026 08:05:14.545 * <search> Enabled workers threadpool of size 8
+1:M 23 Oct 2026 08:05:14.545 * <search> Subscribe to config changes
+1:M 23 Oct 2026 08:05:14.545 * <search> Subscribe to cluster slot migration events
+1:M 23 Oct 2026 08:05:14.545 * <search> Subscribe to cluster topology change events
+1:M 23 Oct 2026 08:05:14.545 * <search> Enabled role change notification
+1:M 23 Oct 2026 08:05:14.546 * <search> Cluster configuration: AUTO partitions, type: 0, coordinator timeout: 0ms
+1:M 23 Oct 2026 08:05:14.546 * Module 'search' loaded from /usr/local/lib/redis/modules//redisearch.so
+1:M 23 Oct 2026 08:05:14.577 * <timeseries> RedisTimeSeries version 81001, git_sha=
+1:M 23 Oct 2026 08:05:14.577 * <timeseries> Redis version found by RedisTimeSeries : 8.10.2 - oss
+1:M 23 Oct 2026 08:05:14.577 * <timeseries> Registering configuration options: [
+1:M 23 Oct 2026 08:05:14.577 * <timeseries> 	{ ts-compaction-policy   :              }
+1:M 23 Oct 2026 08:05:14.577 * <timeseries> 	{ ts-num-threads         :            3 }
+1:M 23 Oct 2026 08:05:14.577 * <timeseries> 	{ ts-libmr-protocol      :     INTERNAL }
+1:M 23 Oct 2026 08:05:14.577 * <timeseries> 	{ ts-retention-policy    :            0 }
+1:M 23 Oct 2026 08:05:14.577 * <timeseries> 	{ ts-duplicate-policy    :        block }
+1:M 23 Oct 2026 08:05:14.577 * <timeseries> 	{ ts-chunk-size-bytes    :         4096 }
+1:M 23 Oct 2026 08:05:14.577 * <timeseries> 	{ ts-encoding            :   compressed }
+1:M 23 Oct 2026 08:05:14.577 * <timeseries> 	{ ts-ignore-max-time-diff:            0 }
+1:M 23 Oct 2026 08:05:14.577 * <timeseries> 	{ ts-ignore-max-val-diff :     0.000000 }
+1:M 23 Oct 2026 08:05:14.577 * <timeseries> 	{ ts-topology-events     :         true }
+1:M 23 Oct 2026 08:05:14.577 * <timeseries> ]
+1:M 23 Oct 2026 08:05:14.578 * <timeseries> Detected redis oss (cluster-enabled=no)
+1:M 23 Oct 2026 08:05:14.578 * <timeseries> Subscribe to ASM events
+1:M 23 Oct 2026 08:05:14.578 * <timeseries> Subscribe to topology changes events
+1:M 23 Oct 2026 08:05:14.578 * <timeseries> Enabled diskless replication
+1:M 23 Oct 2026 08:05:14.578 * Module 'timeseries' loaded from /usr/local/lib/redis/modules//redistimeseries.so
+1:M 23 Oct 2026 08:05:14.623 * <ReJSON> Created new data type 'ReJSON-RL'
+1:M 23 Oct 2026 08:05:14.624 * <ReJSON> version: 81000 git sha: unknown branch: unknown
+1:M 23 Oct 2026 08:05:14.624 * <ReJSON> Exported RedisJSON_V1 API
+1:M 23 Oct 2026 08:05:14.624 * <ReJSON> Exported RedisJSON_V2 API
+1:M 23 Oct 2026 08:05:14.624 * <ReJSON> Exported RedisJSON_V3 API
+1:M 23 Oct 2026 08:05:14.624 * <ReJSON> Exported RedisJSON_V4 API
+1:M 23 Oct 2026 08:05:14.624 * <ReJSON> Exported RedisJSON_V5 API
+1:M 23 Oct 2026 08:05:14.624 * <ReJSON> Exported RedisJSON_V6 API
+1:M 23 Oct 2026 08:05:14.624 * <ReJSON> Exported RedisJSON_V7 API
+1:M 23 Oct 2026 08:05:14.624 * <ReJSON> Exported RedisJSON_V8 API
+1:M 23 Oct 2026 08:05:14.624 * <ReJSON> Enabled diskless replication
+1:M 23 Oct 2026 08:05:14.624 * <ReJSON> Initialized shared string cache, thread safe: true.
+1:M 23 Oct 2026 08:05:14.625 * Module 'ReJSON' loaded from /usr/local/lib/redis/modules//rejson.so
+1:M 23 Oct 2026 08:05:14.625 * <search> Acquired RedisJSON_V8 API
+1:M 23 Oct 2026 08:05:14.634 * Server initialized
+1:M 23 Oct 2026 08:05:14.634 * Ready to accept connections tcp
+1:M 23 Oct 2026 08:05:14.634 # WARNING: Redis does not require authentication and is not protected by network restrictions. Redis will accept connections from any IP address on any network interface.
+1:signal-handler (1792744620) Received SIGTERM scheduling shutdown...

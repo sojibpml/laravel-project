@@ -42,9 +42,7 @@ RUN composer install \
 
 
 # laravel cache
-RUN php artisan config:cache \
-    && php artisan route:cache \
-    && php artisan view:cache
+
 
 RUN chown -R www-data:www-data \
     /var/www/storage \
